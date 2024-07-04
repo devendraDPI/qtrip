@@ -11,6 +11,8 @@ public class Testcase01 extends Base {
     @Test(
         description = "Verify if new user can be created and logged in",
         enabled = true,
+        priority = 1,
+        groups = {"Login flow"},
         dataProvider = "qtripTestDataSet",
         dataProviderClass = ExternalDataProvider.class
     )

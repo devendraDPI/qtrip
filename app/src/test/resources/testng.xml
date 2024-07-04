@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Tests for QTrip Regression">
+    <groups>
+        <run>
+            <include name="Login flow"></include>
+            <include name="Search and filter flow"></include>
+            <include name="Booking and cancellation flow"></include>
+            <include name="Reliability flow"></include>
+        </run>
+    </groups>
     <test name="Test Execution using testNG">
         <packages>
             <package name="qtrip.tests"></package>

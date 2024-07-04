@@ -13,7 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Register {
     WebDriver driver;
-    String url = "https://qtripdynamic-qa-frontend.vercel.app/pages/register";
+    String registerUrl = "https://qtripdynamic-qa-frontend.vercel.app/pages/register";
+    String loginUrl = "https://qtripdynamic-qa-frontend.vercel.app/pages/login";
     public String lastGeneratedUsername = "";
 
     @FindBy(xpath="//input[@name='email']")
@@ -34,8 +35,8 @@ public class Register {
     }
 
     public void navigateToRegisterPage() {
-        if (!driver.getCurrentUrl().equals(url)) {
-            driver.get(url);
+        if (!driver.getCurrentUrl().equals(registerUrl)) {
+            driver.get(registerUrl);
         }
     }
 
@@ -49,7 +50,7 @@ public class Register {
 
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.urlToBe("https://qtripdynamic-qa-frontend.vercel.app/pages/login"));
+            wait.until(ExpectedConditions.urlToBe(loginUrl));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

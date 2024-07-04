@@ -2,7 +2,6 @@ package qtrip.pages;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login {
     WebDriver driver;
-    String url = "https://qtripdynamic-qa-frontend.vercel.app/pages/login";
+    String homeUrl = "https://qtripdynamic-qa-frontend.vercel.app/";
+    String loginUrl = "https://qtripdynamic-qa-frontend.vercel.app/pages/login";
 
     @FindBy(xpath="//input[@name='email']")
     private WebElement usernameTextBox;
@@ -24,30 +24,36 @@ public class Login {
     @FindBy(xpath="//button[contains(text(), 'Login')]")
     private WebElement loginButton;
 
+    @FindBy(xpath="//div[contains(text(), 'Logout')]")
+    WebElement logoutButton;
+
     public Login(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }
 
     public void navigateToLoginPage() {
-        if (!driver.getCurrentUrl().equals(url)) {
-            driver.get(url);
+        if (!driver.getCurrentUrl().equals(loginUrl)) {
+            driver.get(loginUrl);
         }
     }
 
-    public Boolean loginUser(String username, String password) {
-        usernameTextBox.sendKeys(username);
-        passwordTextBox.sendKeys(password);
-        loginButton.click();
+    public Boolean verifyUserIsLoggedIn() {
+        return logoutButton.isDisplayed();
+    }
 
+    public Boolean loginUser(String username, String password) {
         try {
+            usernameTextBox.sendKeys(username);
+            passwordTextBox.sendKeys(password);
+            loginButton.click();
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.urlToBe("https://qtripdynamic-qa-frontend.vercel.app/"));
+            wait.until(ExpectedConditions.urlToBe(homeUrl));
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
 
-        return driver.findElement(By.xpath("//div[contains(text(), 'Logout')]")).isDisplayed();
+        return verifyUserIsLoggedIn();
     }
 }
