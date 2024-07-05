@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+import qtrip.utilities.SeleniumWrapper;
+
 public class Home {
     WebDriver driver;
     String url = "https://qtripdynamic-qa-frontend.vercel.app";
@@ -31,14 +33,12 @@ public class Home {
     }
 
     public void navigateToHomePage() {
-        if (!driver.getCurrentUrl().equals(url)) {
-            driver.get(url);
-        }
+        SeleniumWrapper.navigateAW(driver, url);
     }
 
     public void navigateToRegisterPage() {
         if (!driver.getCurrentUrl().equals(url + "/pages/register")) {
-            registerButton.click();
+            SeleniumWrapper.clickAW(driver, registerButton);
         }
     }
 
@@ -47,13 +47,11 @@ public class Home {
     }
 
     public void logoutUser() {
-        logoutButton.click();
+        SeleniumWrapper.clickAW(driver, logoutButton);
     }
 
     public void searchCity(String city) throws InterruptedException {
-        searchTextBox.clear();
-        Thread.sleep(2000);
-        searchTextBox.sendKeys(city);
+        SeleniumWrapper.sendKeysAW(searchTextBox, city);
     }
 
     public Boolean isNoCityFound() {
@@ -74,8 +72,9 @@ public class Home {
 
     public void selectCity() {
         try {
-            Thread.sleep(2000);
-            suggestionsList.click();
+            Thread.sleep(1000);
+            SeleniumWrapper.clickAW(driver, suggestionsList);
+            Thread.sleep(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }

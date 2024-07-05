@@ -11,6 +11,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import qtrip.utilities.SeleniumWrapper;
+
 public class Register {
     WebDriver driver;
     String registerUrl = "https://qtripdynamic-qa-frontend.vercel.app/pages/register";
@@ -35,17 +37,15 @@ public class Register {
     }
 
     public void navigateToRegisterPage() {
-        if (!driver.getCurrentUrl().equals(registerUrl)) {
-            driver.get(registerUrl);
-        }
+        SeleniumWrapper.navigateAW(driver, registerUrl);
     }
 
     public Boolean registerUser(String username, String password, String confirmPassword, Boolean makeUsernameDynamic) {
         username = makeUsernameDynamic ? (UUID.randomUUID().toString() + "_" + username) : username;
-        usernameTextBox.sendKeys(username);
-        passwordTextBox.sendKeys(password);
-        confirmPasswordTextBox.sendKeys(confirmPassword);
-        registerButton.click();
+        SeleniumWrapper.sendKeysAW(usernameTextBox, username);
+        SeleniumWrapper.sendKeysAW(passwordTextBox, password);
+        SeleniumWrapper.sendKeysAW(confirmPasswordTextBox, confirmPassword);
+        SeleniumWrapper.clickAW(driver, registerButton);
         this.lastGeneratedUsername = username;
 
         try {

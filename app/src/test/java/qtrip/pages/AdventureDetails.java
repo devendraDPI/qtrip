@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+import qtrip.utilities.SeleniumWrapper;
+
 public class AdventureDetails {
     WebDriver driver;
 
@@ -34,15 +36,10 @@ public class AdventureDetails {
 
     public void bookAdventure(String name, String date, String persons) throws InterruptedException {
         Thread.sleep(2000);
-        nameTextBox.sendKeys(name);
-        Thread.sleep(2000);
-        datePicker.sendKeys(date);
-        Thread.sleep(2000);
-        personsCount.clear();
-        Thread.sleep(2000);
-        personsCount.sendKeys(persons);
-        Thread.sleep(2000);
-        reserveButton.click();
+        SeleniumWrapper.sendKeysAW(nameTextBox, name);
+        SeleniumWrapper.sendKeysAW(datePicker, date);
+        SeleniumWrapper.sendKeysAW(personsCount, persons);
+        SeleniumWrapper.clickAW(driver, reserveButton);
         Thread.sleep(2000);
     }
 
@@ -51,6 +48,6 @@ public class AdventureDetails {
     }
 
     public void reservationLinkClick() {
-        reservationLink.click();
+        SeleniumWrapper.clickAW(driver, reservationLink);
     }
 }

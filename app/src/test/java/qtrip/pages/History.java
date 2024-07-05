@@ -12,6 +12,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import qtrip.utilities.SeleniumWrapper;
+
 public class History {
     WebDriver driver;
     String url = "https://qtripdynamic-qa-frontend.vercel.app/pages/adventures/reservations/";
@@ -52,7 +54,7 @@ public class History {
 
     public void cancelReservation() throws InterruptedException {
         Thread.sleep(2000);
-        cancelButton.click();
+        SeleniumWrapper.clickAW(driver, cancelButton);
         FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver)
                                     .withTimeout((Duration.ofSeconds(10)))
                                     .pollingEvery(Duration.ofMillis(250))

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import qtrip.utilities.SeleniumWrapper;
+
 public class Adventure {
     WebDriver driver;
 
@@ -50,20 +52,21 @@ public class Adventure {
             Select select= new Select(selectHourDropdown);
             select.selectByVisibleText(duration);
             Thread.sleep(2000);
-            selectHourDropdown.click();
+            SeleniumWrapper.clickAW(driver, selectHourDropdown);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void clearHours() {
-        clearHourButton.click();
+        SeleniumWrapper.clickAW(driver, clearHourButton);
     }
 
     public void searchAdventure(String adventureName) {
         try {
-            Thread.sleep(5000);
-            searchAdventuresTextBox.sendKeys(adventureName);
+            Thread.sleep(2000);
+            SeleniumWrapper.sendKeysAW(searchAdventuresTextBox, adventureName);
+            Thread.sleep(2000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,16 +74,16 @@ public class Adventure {
 
     public void clickAdventure() throws InterruptedException {
         Thread.sleep(4000);
-        adventures.click();
+        SeleniumWrapper.clickAW(driver, adventures);
     }
 
     public void setCategoryValue(String category) {
-        try{
+        try {
             Select select= new Select(selectCategoryDropdown);
             select.selectByVisibleText(category);
             Thread.sleep(2000);
-            selectCategoryDropdown.click();
-        } catch(Exception e){
+            SeleniumWrapper.clickAW(driver, selectCategoryDropdown);
+        } catch(Exception e) {
             e.getStackTrace();
         }
     }

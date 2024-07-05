@@ -10,6 +10,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import qtrip.utilities.SeleniumWrapper;
+
 public class Login {
     WebDriver driver;
     String homeUrl = "https://qtripdynamic-qa-frontend.vercel.app/";
@@ -33,9 +35,7 @@ public class Login {
     }
 
     public void navigateToLoginPage() {
-        if (!driver.getCurrentUrl().equals(loginUrl)) {
-            driver.get(loginUrl);
-        }
+        SeleniumWrapper.navigateAW(driver, loginUrl);
     }
 
     public Boolean verifyUserIsLoggedIn() {
@@ -44,9 +44,9 @@ public class Login {
 
     public Boolean loginUser(String username, String password) {
         try {
-            usernameTextBox.sendKeys(username);
-            passwordTextBox.sendKeys(password);
-            loginButton.click();
+            SeleniumWrapper.sendKeysAW(usernameTextBox, username);
+            SeleniumWrapper.sendKeysAW(passwordTextBox, password);
+            SeleniumWrapper.clickAW(driver, loginButton);
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.urlToBe(homeUrl));
         } catch (Exception e) {
