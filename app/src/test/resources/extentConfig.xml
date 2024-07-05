@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- Report theme: standard, dark -->
+        <theme>dark</theme>
+
+        <!-- Title of the document -->
+        <documentTitle>QTrip - Regression Suite</documentTitle>
+
+        <!-- Protocol: defaults to HTTPS -->
+        <protocol>https</protocol>
+
+        <!-- Document encoding: defaults to UTF-8 -->
+        <encoding>UTF-8</encoding>
+
+        <!-- Time format for timestamps -->
+        <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+
+        <!-- Timestamp format including milliseconds -->
+        <timestampFormat>yyyy-MM-dd HH:mm:ss.SSS</timestampFormat>
+
+        <!-- Report name displayed at top-nav with logo -->
+        <reportName align="center">
+            <!-- <img src="../logo.png" style="position:absolute;left:75px;"/> -->
+            <message>QTrip - Regression Test</message>
+        </reportName>
+
+        <!-- Location of charts in the test view: top, bottom -->
+        <testViewChartLocation>bottom</testViewChartLocation>
+
+        <!-- Report file path -->
+        <!-- <reportFilePath>./test-output/ExtentReportsDemo.html</reportFilePath> -->
+
+        <!-- Automatically create new report file for each test run -->
+        <autoCreateRelativePathMedia>true</autoCreateRelativePathMedia>
+
+        <!-- Enable offline mode -->
+        <offlineMode>false</offlineMode>
+
+        <!-- Enable status icons -->
+        <statusIcons>true</statusIcons>
+
+        <!-- Enable timeline view -->
+        <timelineEnabled>true</timelineEnabled>
+
+        <!-- Configuration for test status icons -->
+        <test>
+            <statusIcons>
+                <error><i class="fas fa-exclamation-triangle"></i></error>
+                <fail><i class="fas fa-times-circle"></i></fail>
+                <fatal><i class="fas fa-exclamation-circle"></i></fatal>
+                <info><i class="fas fa-info-circle"></i></info>
+                <pass><i class="fas fa-check-circle"></i></pass>
+                <skip><i class="fas fa-chevron-circle-right"></i></skip>
+                <unknown><i class="fas fa-question-circle"></i></unknown>
+                <warning><i class="fas fa-exclamation-triangle"></i></warning>
+            </statusIcons>
+        </test>
+    </configuration>
+</extentreports>

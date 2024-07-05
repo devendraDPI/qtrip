@@ -46,11 +46,12 @@ public class Home {
         return logoutButton.isDisplayed();
     }
 
-    public void logoutUser() {
-        SeleniumWrapper.clickAW(driver, logoutButton);
+    public Boolean logoutUser() {
+        return SeleniumWrapper.clickAW(driver, logoutButton);
     }
 
     public void searchCity(String city) throws InterruptedException {
+        Thread.sleep(1000);
         SeleniumWrapper.sendKeysAW(searchTextBox, city);
     }
 

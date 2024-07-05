@@ -73,8 +73,9 @@ public class Adventure {
     }
 
     public void clickAdventure() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         SeleniumWrapper.clickAW(driver, adventures);
+        Thread.sleep(2000);
     }
 
     public void setCategoryValue(String category) {

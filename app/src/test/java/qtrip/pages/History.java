@@ -41,15 +41,16 @@ public class History {
         }
     }
 
-    public void getReservation() {
+    public String getReservation() {
         try {
             Thread.sleep(2000);
             for (WebElement transactionId : transactionIds) {
-                System.out.println("Transaction Id: " + transactionId.getText());
+                return "Transaction Id: " + transactionId.getText();
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     public void cancelReservation() throws InterruptedException {
