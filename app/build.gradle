@@ -32,6 +32,15 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.relevantcodes/extentreports
     implementation group: 'com.relevantcodes', name: 'extentreports', version: '2.40.2'
+
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.0'
+
+    // https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '5.5.0'
+
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20240303'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -50,6 +59,33 @@ tasks.named('test') {
     // Use TestNG for unit tests.
     useTestNG(){
         suites "src/test/resources/testng.xml"
+        useDefaultListeners = true
+    }
+
+    afterSuite {desc, result ->
+        if (!desc.parent) {
+            println "\nTest Result: ${result.resultType}"
+            println "Test Summary: Ran ${result.testCount} tests, " +
+                "${result.successfulTestCount} succeeded, " +
+                "${result.failedTestCount} failed, " +
+                "${result.skippedTestCount} skipped"
+        }
+    }
+
+    testLogging {
+        events "PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR"
+        exceptionFormat = 'full'
+        showStackTraces = true
+    }
+
+    testLogging.showStandardStreams = true
+    test.outputs.upToDateWhen {false}
+}
+
+tasks.register('testapi', Test) {
+    // Use TestNG for unit tests.
+    useTestNG() {
+        suites "src/test/resources/testngapi.xml"
         useDefaultListeners = true
     }
 
